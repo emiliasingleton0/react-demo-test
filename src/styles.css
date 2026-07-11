@@ -1,0 +1,655 @@
+:root {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #e7edf5;
+  background: #02060b;
+  --panel: #07111c;
+  --line: #24384b;
+  --line-bright: #365b78;
+  --muted: #86a0b7;
+  --dim: #587086;
+  --blue: #7bc3ff;
+  --green: #73f5ae;
+  --amber: #ffc66d;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 80% -10%, rgba(28, 93, 143, 0.22), transparent 35rem),
+    linear-gradient(180deg, #030910 0%, #02060b 100%);
+}
+
+button, input { font: inherit; }
+button { cursor: pointer; }
+
+.console {
+  width: min(1440px, calc(100% - 28px));
+  margin: 0 auto;
+  padding: 14px 0 32px;
+}
+
+.top-header,
+.status-strip,
+.intro-panel,
+.panel {
+  border: 1px solid var(--line);
+  background: rgba(5, 14, 23, 0.96);
+}
+
+.top-header {
+  min-height: 82px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mission-id,
+.header-data,
+.actions,
+.panel-heading,
+.data-top {
+  display: flex;
+  align-items: center;
+}
+
+.mission-id { gap: 13px; }
+
+.mark {
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line-bright);
+  color: var(--blue);
+  background: linear-gradient(135deg, rgba(123,195,255,.15), transparent), #07131f;
+  font-family: "Courier New", monospace;
+  font-size: .8rem;
+  letter-spacing: .12em;
+}
+
+.mission-id p,
+.panel-heading p,
+.section-code {
+  margin: 0;
+  color: var(--blue);
+  font-family: "Courier New", monospace;
+  font-size: .67rem;
+  letter-spacing: .16em;
+}
+
+.mission-id h1 {
+  margin: 4px 0 0;
+  font-size: 1.05rem;
+}
+
+.header-data { gap: 38px; }
+.header-data div { text-align: right; }
+
+.header-data span,
+.orbit-note span,
+.altitude-control span,
+.formula-box span {
+  display: block;
+  color: var(--dim);
+  font-size: .62rem;
+  letter-spacing: .13em;
+}
+
+.header-data strong {
+  display: block;
+  margin-top: 5px;
+  font-family: "Courier New", monospace;
+  font-size: .82rem;
+}
+
+.good { color: var(--green) !important; }
+.caution { color: var(--amber) !important; }
+
+.status-strip {
+  margin-top: 8px;
+  min-height: 37px;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+}
+
+.status-strip span {
+  min-width: max-content;
+  padding: 0 18px;
+  border-right: 1px solid var(--line);
+  color: var(--dim);
+  font-family: "Courier New", monospace;
+  font-size: .64rem;
+}
+
+.status-strip span:first-child { padding-left: 0; }
+
+.status-strip strong {
+  margin-left: 7px;
+  color: #b7c6d4;
+  font-weight: normal;
+}
+
+.intro-panel {
+  margin-top: 8px;
+  padding: 28px 30px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: 24px;
+}
+
+.intro-panel h2 {
+  margin: 10px 0 0;
+  font-size: clamp(2.3rem, 5vw, 5.4rem);
+  line-height: .9;
+  letter-spacing: -.055em;
+}
+
+.intro-copy {
+  max-width: 760px;
+  margin: 18px 0 0;
+  color: #9bafc1;
+  line-height: 1.7;
+}
+
+.actions { gap: 8px; }
+
+.actions button {
+  min-height: 43px;
+  padding: 0 16px;
+  border: 1px solid #4b88b8;
+  border-radius: 0;
+  color: #f0f8ff;
+  background: #164b72;
+  font-family: "Courier New", monospace;
+  font-size: .72rem;
+  letter-spacing: .06em;
+}
+
+.actions button:hover { filter: brightness(1.15); }
+
+.actions .ghost {
+  color: #abc0d2;
+  border-color: var(--line-bright);
+  background: #091521;
+}
+
+.main-grid,
+.telemetry-grid,
+.bottom-grid {
+  margin-top: 8px;
+  display: grid;
+  gap: 8px;
+}
+
+.main-grid { grid-template-columns: 1.55fr .8fr; }
+.telemetry-grid { grid-template-columns: 1.5fr .85fr; }
+.bottom-grid { grid-template-columns: 1.25fr .75fr; }
+
+.panel {
+  min-width: 0;
+  padding: 18px;
+}
+
+.panel-heading {
+  min-height: 42px;
+  justify-content: space-between;
+}
+
+.panel-heading h3 {
+  margin: 5px 0 0;
+  font-size: 1rem;
+}
+
+.panel-state {
+  padding: 6px 8px;
+  border: 1px solid var(--line-bright);
+  color: var(--blue);
+  font-family: "Courier New", monospace;
+  font-size: .62rem;
+  letter-spacing: .07em;
+}
+
+.orbit-panel,
+.physics-panel { min-height: 645px; }
+
+.orbit-space {
+  position: relative;
+  min-height: 475px;
+  margin-top: 8px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(19,69,106,.19), transparent 31%),
+    linear-gradient(180deg, rgba(4,13,22,.15), rgba(1,5,9,.68));
+}
+
+.stars,
+.stars::before,
+.stars::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+}
+
+.stars {
+  opacity: .72;
+  background-image:
+    radial-gradient(circle at 10% 15%, #d8eeff 0 1px, transparent 1.4px),
+    radial-gradient(circle at 22% 72%, #8dbde3 0 1px, transparent 1.3px),
+    radial-gradient(circle at 35% 28%, #fff 0 .8px, transparent 1.2px),
+    radial-gradient(circle at 48% 84%, #a6d1ef 0 1px, transparent 1.3px),
+    radial-gradient(circle at 62% 18%, #fff 0 1px, transparent 1.4px),
+    radial-gradient(circle at 78% 67%, #a9d7f4 0 1px, transparent 1.3px),
+    radial-gradient(circle at 91% 31%, #fff 0 .8px, transparent 1.2px);
+  background-size: 180px 150px;
+}
+
+.orbit-svg {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 475px;
+}
+
+.orbit-line {
+  fill: none;
+  stroke: #31566f;
+  stroke-width: 1;
+  stroke-dasharray: 5 7;
+  opacity: .72;
+}
+
+.orbit-line.second {
+  stroke: #1b3448;
+  stroke-dasharray: 2 8;
+  opacity: .55;
+}
+
+.earth {
+  stroke: #63b6ee;
+  stroke-width: 1.25;
+}
+
+.land { fill: #51a497; opacity: .48; }
+.land-two { fill: #358d7e; }
+.land-three { fill: #6cb6a4; }
+
+.cloud {
+  fill: none;
+  stroke: rgba(223,245,255,.65);
+  stroke-width: 3;
+  stroke-linecap: round;
+  opacity: .35;
+}
+
+.dim-cloud { opacity: .22; }
+
+.reference {
+  stroke: #426276;
+  stroke-width: 1;
+  stroke-dasharray: 3 6;
+}
+
+.svg-text {
+  fill: #7592a8;
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+}
+
+.craft-glow {
+  fill: #c3ebff;
+  stroke: #fff;
+  stroke-width: 1;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.craft {
+  fill: #d6efff;
+  stroke: #9fd4f8;
+  stroke-width: 1;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: .6; }
+  50% { opacity: 1; }
+}
+
+.orbit-note {
+  position: absolute;
+  z-index: 3;
+  bottom: 16px;
+}
+
+.orbit-note.left { left: 16px; }
+.orbit-note.right { right: 16px; text-align: right; }
+
+.orbit-note strong {
+  display: block;
+  margin-top: 5px;
+  color: #a9bfd0;
+  font-family: "Courier New", monospace;
+  font-size: .7rem;
+  font-weight: normal;
+}
+
+.altitude-control {
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.altitude-control > div:first-child {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.altitude-control strong {
+  color: var(--blue);
+  font-family: "Courier New", monospace;
+  font-size: .85rem;
+}
+
+.altitude-control input {
+  width: 100%;
+  margin: 18px 0 7px;
+  accent-color: #6ab8ef;
+}
+
+.range-labels {
+  display: flex;
+  justify-content: space-between;
+}
+
+.formula-box {
+  margin-top: 22px;
+  padding: 20px;
+  border: 1px solid #304b61;
+  background: linear-gradient(135deg, rgba(60,126,177,.09), transparent 60%), #07131e;
+}
+
+.formula-box strong {
+  display: block;
+  margin-top: 13px;
+  color: #d7ecfa;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 2rem;
+  font-weight: normal;
+}
+
+.formula-box p {
+  margin: 10px 0 0;
+  color: var(--dim);
+  font-family: "Courier New", monospace;
+  font-size: .68rem;
+}
+
+.physics-list {
+  margin-top: 12px;
+  display: grid;
+  gap: 8px;
+}
+
+.data-card {
+  padding: 16px;
+  border: 1px solid var(--line);
+  background: #06101a;
+}
+
+.data-top { justify-content: space-between; }
+
+.data-top span {
+  color: var(--dim);
+  font-size: .64rem;
+  letter-spacing: .1em;
+}
+
+.data-top i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 8px rgba(115,245,174,.6);
+}
+
+.data-card strong {
+  display: block;
+  margin-top: 12px;
+  color: #edf7ff;
+  font-family: "Courier New", monospace;
+  font-size: 1.6rem;
+  font-weight: normal;
+}
+
+.data-card small {
+  margin-left: 8px;
+  color: var(--dim);
+  font-size: .68rem;
+}
+
+.data-card p {
+  margin: 7px 0 0;
+  color: #6e8599;
+  font-size: .72rem;
+}
+
+.graph-panel { min-height: 290px; }
+
+.graph-box { margin-top: 18px; }
+
+.graph-box svg {
+  width: 100%;
+  min-height: 180px;
+  background:
+    linear-gradient(rgba(43,76,100,.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(43,76,100,.08) 1px, transparent 1px);
+  background-size: 34px 34px;
+}
+
+.grid-line {
+  stroke: #203547;
+  stroke-width: 1;
+}
+
+.graph-line {
+  fill: none;
+  stroke: var(--blue);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.graph-labels {
+  display: flex;
+  justify-content: space-between;
+  color: var(--dim);
+  font-family: "Courier New", monospace;
+  font-size: .6rem;
+}
+
+.vehicle-list { margin-top: 17px; }
+
+.vehicle-list div {
+  min-height: 49px;
+  display: grid;
+  grid-template-columns: 1fr auto 86px;
+  align-items: center;
+  gap: 14px;
+  border-top: 1px solid var(--line);
+}
+
+.vehicle-list span {
+  color: var(--muted);
+  font-size: .68rem;
+  letter-spacing: .06em;
+}
+
+.vehicle-list strong {
+  color: #d5e6f2;
+  font-family: "Courier New", monospace;
+  font-size: .76rem;
+  font-weight: normal;
+}
+
+.vehicle-list em {
+  color: var(--green);
+  font-family: "Courier New", monospace;
+  font-size: .64rem;
+  font-style: normal;
+  text-align: right;
+}
+
+.event-list {
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.event-list li {
+  min-height: 41px;
+  display: grid;
+  grid-template-columns: 132px 1fr;
+  align-items: center;
+  border-top: 1px solid var(--line);
+}
+
+.event-list span {
+  color: var(--dim);
+  font-family: "Courier New", monospace;
+  font-size: .63rem;
+}
+
+.event-list p {
+  margin: 0;
+  color: #9eb1c2;
+  font-size: .76rem;
+}
+
+.notes-panel > p {
+  margin: 18px 0 0;
+  color: #91a4b5;
+  line-height: 1.7;
+  font-size: .8rem;
+}
+
+.tags {
+  margin-top: 22px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.tags span {
+  padding: 6px 8px;
+  border: 1px solid var(--line);
+  color: #7890a5;
+  font-family: "Courier New", monospace;
+  font-size: .6rem;
+}
+
+footer {
+  min-height: 50px;
+  padding: 0 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #4f6578;
+  font-family: "Courier New", monospace;
+  font-size: .62rem;
+}
+
+footer p { margin: 0; }
+
+@media (max-width: 980px) {
+  .main-grid,
+  .telemetry-grid,
+  .bottom-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .orbit-panel,
+  .physics-panel {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 700px) {
+  .console {
+    width: min(100% - 16px, 1440px);
+    padding-top: 8px;
+  }
+
+  .top-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 17px;
+  }
+
+  .header-data {
+    width: 100%;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .header-data div { text-align: left; }
+
+  .intro-panel {
+    grid-template-columns: 1fr;
+    padding: 24px 20px;
+  }
+
+  .intro-panel h2 { font-size: 3rem; }
+
+  .actions { width: 100%; }
+  .actions button { flex: 1; }
+
+  .orbit-space,
+  .orbit-svg {
+    min-height: 365px;
+    height: 365px;
+  }
+
+  .vehicle-list div {
+    grid-template-columns: 1fr auto;
+  }
+
+  .vehicle-list em { display: none; }
+
+  .event-list li {
+    padding: 10px 0;
+    grid-template-columns: 1fr;
+    gap: 5px;
+  }
+
+  footer {
+    padding-top: 18px;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+  }
+}
+
+@media (max-width: 430px) {
+  .mission-id h1 { font-size: .9rem; }
+  .header-data { flex-direction: column; }
+  .intro-panel h2 { font-size: 2.45rem; }
+  .formula-box strong { font-size: 1.55rem; }
+  .data-card strong { font-size: 1.35rem; }
+  .orbit-note.right { top: 16px; bottom: auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
