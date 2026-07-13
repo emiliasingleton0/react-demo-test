@@ -1,6 +1,6 @@
 # Orbital Dynamics Console
 
-A React aerospace demo that combines a spacecraft-style operations interface with a simplified circular Earth orbit model. This is the second version of my original Mission Status project. I wanted V2 to include more physics and more data instead of randomly changing telemetry values.
+A React aerospace demo that combines a spacecraft-style operations interface with a simplified circular Earth orbit model. This is the second version of my original Mission Status project. Wanted V2 to include more physics and more data instead of randomly changing telemetry values
 
 ## Features
 
@@ -12,7 +12,7 @@ A React aerospace demo that combines a spacecraft-style operations interface wit
 - Simplified animated orbit visualization
 - Live altitude telemetry graph
 - Mission elapsed time
-- Pause and resume controls
+- Pause and resume 
 - Simulated spacecraft health values
 - Flight event log
 
