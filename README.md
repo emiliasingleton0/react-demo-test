@@ -18,17 +18,4 @@ The orbital radius `r` is the radius of Earth plus the selected altitude. This d
 - SVG
 - Vite
 
-## Run Locally
-
-```bash
-npm install
-npm run dev
-```
-
-## Build
-
-```bash
-npm run build
-```
-
 The interface is an original design inspired by aerospace operations software and human-factors ideas. It is in demo.
