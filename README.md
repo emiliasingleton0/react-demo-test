@@ -2,20 +2,6 @@
 
 A React aerospace demo that combines a spacecraft-style operations interface with a simplified circular Earth orbit model. This is the second version of my original Mission Status project. Wanted V2 to include more physics and more data instead of randomly changing telemetry values
 
-## Features
-
-- Adjustable low Earth orbit altitude
-- Circular orbital velocity calculation
-- Orbital period calculation
-- Local gravitational acceleration calculation
-- Escape velocity comparison
-- Simplified animated orbit visualization
-- Live altitude telemetry graph
-- Mission elapsed time
-- Pause and resume 
-- Simulated spacecraft health values
-- Flight event log
-
 ## Physics Model
 
 The project uses a simplified circular two-body orbit model.
