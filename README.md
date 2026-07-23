@@ -12,8 +12,6 @@ T = 2 * pi * sqrt(r^3 / mu)
 
 The orbital radius `r` is the radius of Earth plus the selected altitude. This demo does not model atmospheric drag, Earth oblateness, solar radiation pressure, or active spacecraft maneuvers.
 
-## Used
-
 - React
 - JavaScript
 - CSS
